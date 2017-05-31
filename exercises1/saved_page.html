@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width">
+
+  
+  <title>Creating a Book Cover Using JavaScript and p5.js | CSS-Tricks</title>
+
+  <link rel="apple-touch-icon" href="https://cdn.css-tricks.com/apple-touch-icon.png">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="msapplication-TileImage" content="https://cdn.css-tricks.com/mstile-144x144.png">
+
+  <meta property="fb:pages" content="124436167285">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://cdn.css-tricks.com/opensearch.xml" title="CSS-Tricks Search">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://feeds.feedburner.com/CssTricks">
+
+  <link rel="stylesheet" href="https://cloud.typography.com/610186/6645572/css/fonts.css">
+  <!--[if !IE]><!-->
+  <link rel="stylesheet" href="https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-16/style.css?v=5.6">
+  <!--<![endif]-->
+  <!--[if lt IE 9]>
+  <link rel="stylesheet" href="https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-16/css/oldie.css">
+  <![endif]-->
+  <!--[if IE 9]>
+  <link rel="stylesheet" href="https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-16/style.css?v=5.6>
+  <![endif]-->
+
+    
+  
+<!-- This site is optimized with the Yoast SEO plugin v4.8 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="I recently published a book and an interactive course called Coding for Visual Learners. It teaches coding to beginners from scratch using the widely popul"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://css-tricks.com/creating-book-cover-using-javascript-p5-js/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Creating a Book Cover Using JavaScript and p5.js | CSS-Tricks" />
+<meta property="og:description" content="I recently published a book and an interactive course called Coding for Visual Learners. It teaches coding to beginners from scratch using the widely popul" />
+<meta property="og:url" content="https://css-tricks.com/creating-book-cover-using-javascript-p5-js/" />
+<meta property="og:site_name" content="CSS-Tricks" />
+<meta property="article:publisher" content="https://www.facebook.com/CSSTricks" />
+<meta property="article:tag" content="animation" />
+<meta property="article:tag" content="book" />
+<meta property="article:tag" content="p5" />
+<meta property="article:section" content="Article" />
+<meta property="article:published_time" content="2017-03-20T05:07:47+00:00" />
+<meta property="og:image" content="https://cdn.css-tricks.com/wp-content/uploads/2017/03/book-cover-p5.jpg" />
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="640" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="I recently published a book and an interactive course called Coding for Visual Learners. It teaches coding to beginners from scratch using the widely popul" />
+<meta name="twitter:title" content="Creating a Book Cover Using JavaScript and p5.js | CSS-Tricks" />
+<meta name="twitter:site" content="@Real_CSS_Tricks" />
+<meta name="twitter:image" content="https://cdn.css-tricks.com/wp-content/uploads/2017/03/book-cover-p5.jpg" />
+<meta name="twitter:creator" content="@Real_CSS_Tricks" />
+<!-- / Yoast SEO plugin. -->
+
+<script type='text/javascript' src='https://cdn.css-tricks.com/wp-content/uploads/minqueue-cache/minqueue-ca14aaa7-9be6b636.js'></script>
+<link rel='https://api.w.org/' href='https://css-tricks.com/wp-json/' />
+<link rel='shortlink' href='https://css-tricks.com/?p=252847' />
+<link rel="alternate" type="application/json+oembed" href="https://css-tricks.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcss-tricks.com%2Fcreating-book-cover-using-javascript-p5-js%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://css-tricks.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcss-tricks.com%2Fcreating-book-cover-using-javascript-p5-js%2F&#038;format=xml" />
+<!-- Better Art Direction Styles -->
+
+
+
+<link rel='dns-prefetch' href='//v0.wordpress.com'>
+<link rel='dns-prefetch' href='//jetpack.wordpress.com'>
+<link rel='dns-prefetch' href='//s0.wp.com'>
+<link rel='dns-prefetch' href='//s1.wp.com'>
+<link rel='dns-prefetch' href='//s2.wp.com'>
+<link rel='dns-prefetch' href='//public-api.wordpress.com'>
+<link rel='dns-prefetch' href='//0.gravatar.com'>
+<link rel='dns-prefetch' href='//1.gravatar.com'>
+<link rel='dns-prefetch' href='//2.gravatar.com'>
+
+</head>
+
+<body class="post-template-default single single-post postid-252847 single-format-standard">
+
+  <script>
+    (function(){
+      var bsa = document.createElement('script');
+         bsa.async = true;
+         bsa.src = "//s3.buysellads.com/ac/bsa.js";
+      (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+    })();
+  </script>
+
+  <header class="site-header">
+
+  <div class="menu-toggle-area">
+    <button id="mobile-menu-toggle" class="button button-header mobile-menu-toggle">
+      <svg class="icon-menu" width="26px" height="26px">
+        <use xlink:href="#icon-menu"></use>
+      </svg>
+    </button>
+  </div>
+
+  <div class="logo">
+    <a href="/">
+      <svg class="icon-logo-star" width="26px" height="26px">
+        <use xlink:href="#icon-logo-star"></use>
+      </svg>
+    </a>
+  </div>
+
+  <div class="header-middle-area">
+
+    <a href="/" class="logo-link">
+      CSS-Tricks
+    </a>
+
+  </div>
+
+  <button id="search-opener" class="button button-header search-opener-button">
+    <svg class="icon-search" width="26px" height="26px">
+      <use xlink:href="#icon-search"></use>
+    </svg>
+    <svg class="icon-close" width="26px" height="26px">
+      <use xlink:href="#icon-close"></use>
+    </svg>
+  </button>
+
+  <div class="search" role="search" id="search-area">
+
+    <form id="search-form" class="search-form" action="/search-results/">
+
+      <label for="q" id="search-label" class="screen-reader">
+        Search
+      </label>
+
+      <input aria-labelledby="search-label" id="q" required type="search" name="q" class="search-field" value="">
+
+      <button type="submit" class="button button-header search-button">
+        <svg class="icon-search" width="26px" height="26px">
+          <use xlink:href="#icon-search"></use>
+        </svg>
+      </button>
+
+    </form>
+
+  </div>
+
+</header>
+
+  <div class="all-site-wrap">
+
+    <nav class="main-nav" id="main-nav">
+
+  <ul>
+    <li class="home">
+      <a href="/">
+        <svg class="icon-nav-home" width="26px" height="26px">
+          <use xlink:href="#icon-nav-home"></use>
+        </svg>
+        <span>Home</span>
+      </a>
+    </li>
+    <li class="videos">
+      <a href="/video-screencasts/">
+        <svg class="icon-nav-video" width="26px" height="26px">
+          <use xlink:href="#icon-nav-video"></use>
+        </svg>
+        <span>Videos</span>
+      </a>
+    </li>
+    <li class="almanac">
+      <a href="/almanac/">
+        <svg class="icon-nav-almanac" width="26px" height="26px">
+          <use xlink:href="#icon-nav-almanac"></use>
+        </svg>
+        <span>Almanac</span>
+      </a>
+    </li>
+    <li class="gallery">
+      <a href="/gallery/">
+        <svg class="icon-nav-gallery" width="26px" height="26px">
+          <use xlink:href="#icon-nav-gallery"></use>
+        </svg>
+        <span>Gallery</span>
+      </a>
+    </li>
+    <li class="snippets">
+      <a href="/snippets/">
+        <svg class="icon-nav-snippets" width="26px" height="26px">
+          <use xlink:href="#icon-nav-snippets"></use>
+        </svg>
+        <span>Snippets</span>
+      </a>
+    </li>
+    <li class="forums">
+      <a href="/forums/">
+        <svg class="icon-nav-forums" width="26px" height="26px">
+          <use xlink:href="#icon-nav-forums"></use>
+        </svg>
+        <span>Forums</span>
+      </a>
+    </li>
+    <li class="newsletter">
+      <a href="/newsletters/">
+        <svg class="icon-nav-newsletter" width="26px" height="26px">
+          <use xlink:href="#icon-nav-newsletter"></use>
+        </svg>
+        <span>Newsletter</span>
+      </a>
+    </li>
+<!--     <li class="shop">
+      <a href="/shop/">
+        <svg class="icon-nav-shop" width="26px" height="26px">
+          <use xlink:href="#icon-nav-shop"></use>
+        </svg>
+        <span>Shop</span>
+      </a>
+    </li> -->
+    <li class="jobs">
+      <a href="/jobs/">
+        <svg class="icon-nav-jobs" width="26px" height="26px">
+          <use xlink:href="#icon-nav-jobs"></use>
+        </svg>
+        <span>Jobs</span>
+      </a>
+    </li>
+    <li class="guides">
+      <a href="/guides/">
+        <svg class="icon-nav-guide" width="26px" height="26px">
+          <use xlink:href="#icon-nav-guide"></use>
+        </svg>
+        <span>Guides</span>
+      </a>
+    </li>
+  </ul>
+
+</nav>
+<div class="page-wrap">
+
+  <article id="post-252847" role="main" class="instapaper_body h-entry e-content">
+
+    <header class="mega-header">
+
+      <h1 class="p-name">
+                Creating a Book Cover Using JavaScript and&nbsp;p5.js              </h1>
+
+    </header>
+
+    <p class="author-byline">
+
+      <span class="author-and-date">
+                By
+        <a href="https://css-tricks.com/author/heuristica/">
+                    <span class="p-author">
+            Engin Arslan          </span>
+        </a>
+                <span class="slashes">On</span>
+        <time datetime="2017-03-20" class="dt-published">
+          March 20, 2017        </time>
+      </span>
+
+              <span class="byline-tags">
+          <svg class="icon-tag" width="12px" height="12px"><use xlink:href="#icon-tag"></use></svg><a href="https://css-tricks.com/tag/animation/" rel="tag">animation</a>, <a href="https://css-tricks.com/tag/book/" rel="tag">book</a>, <a href="https://css-tricks.com/tag/p5/" rel="tag">p5</a>        </span>
+      
+    </p>
+
+    <div class="article-content">
+
+                      <div class="module module-ad module-padded">
+    <div id="bsap_1279518" class="bsarocks bsap_3469a2a501a9e18091036aa0c89f9dcb"></div>
+  </div>
+      
+      <p>I recently published a book and an interactive course called <a href="http://www.codingforvisuallearners.com/">Coding for Visual Learners</a>. It teaches coding to beginners from scratch using the widely popular JavaScript programming language and the p5.js programming library. Since p5.js a great and an easy to use drawing library, I wanted to make use of it to create the cover of my <a href="http://i.imgur.com/9EJuFze.jpg">book</a> and course as well. This is a tutorial on how to create this particular visual using JavaScript and p5.js.</p>
+<p><span id="more-252847"></span></p>
+<figure><img src="https://css-tricks.com/images/p5-book-cover.gif" alt="Book Cover using p5.js (circling 1's and 0's around the title)"></figure>
+<p><a href="https://p5js.org/">p5.js</a> is a drawing & creative coding library that is based on the idea of sketching. Just like how sketching can be thought of as a minimal approach to drawing to quickly prototype an idea, p5.js is built on the concept of writing the minimal amount of code to translate your visual, interaction or animation ideas to the screen. p5.js is a JavaScript implementation of the popular library called Processing which is based on the Java programming language.</p>
+<p>The concise nature of p5.js makes it a very easy library to learn. But don't let this simplicity trick you into believing that p5.js has limited capabilities. p5.js has an impressive amount of functionality, history, and community behind it to make it a valuable learning investment if you ever wanted to create art, design, motion or interactive pieces using code. A p5.js program can be anywhere from a few lines of code to thousands.</p>
+<p>You can use p5.js to build intricate data visualizations:</p><div class="bsa-content-ad"><div id="bsap_1306868" class="bsarocks bsap_3469a2a501a9e18091036aa0c89f9dcb"></div></div>
+<p data-height="500" data-theme-id="1" data-slug-hash="aJJmZP" data-default-tab="result" data-user="enginarslan" data-embed-version="2" data-pen-title="p5.js data visualization" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/aJJmZP/">p5.js data visualization</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>Or, generative art:</p>
+<p data-height="500" data-theme-id="1" data-slug-hash="XMMjjP" data-default-tab="result" data-user="enginarslan" data-embed-version="2" data-pen-title="p5.js generative art" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/XMMjjP/">p5.js generative art</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>In this tutorial, I will be assuming a bit of JavaScript knowledge like familiarity with if-else structures, arrays, etc. If you would like to brush up your JavaScript knowledge or would like to learn this powerful language from scratch I would highly recommend you to check out my book and the course <a href="http://www.codingforvisuallearners">Coding for Visual Learners</a>. It is tailored for the absolute beginner.</p>
+<p>I will also assume some level of familiarity with computer graphics so that concepts like coordinate systems or color modes don't require too much explanation. But in case if anything is not clear, feel free to reach out to me and I will do my best to clarify things.</p>
+<p>You can follow along with this write-up either using the <a href="https://p5js.org/download/">p5.js editor</a> on your operating system or use an online code editor. Here is a <a href="http://codepen.io/enginarslan/pen/xqqEqB">pen</a> that can serve as a template for your p5.js projects.</p>
+<p>Let's get started!</p>
+<h3>Part One: p5.js Basics</h3>
+<h4>setup & draw functions</h4>
+<p>Most p5.js scripts contain two function declarations called <code>setup</code> and <code>draw</code>. You will be writing all of your p5.js related code inside these two functions and p5.js will execute these functions for you in particular ways. It is important to understand how these functions are executed by p5.js since they form the backbone of any p5.js program.</p>
+<ol>
+<li>The <code>setup</code> function is where you will be writing code that is related to initialization of your program. Anything that is written inside the <code>setup</code> function gets executed once and it gets executed at the beginning of the program.</li>
+<li>The <code>draw</code> function is where you will be writing most of the drawing related functionality. <code>draw</code> function gets executed after the <code>setup</code> function and it gets executed continuously (close to 60 times, frames, a second by default) which lets you create all kinds of interactive and animated visuals using this library.</li>
+</ol>
+<p>Given <code>draw</code> and <code>setup</code> functions are pretty essential to the workings of p5.js, this is the boilerplate code that you would need to use for almost every p5.js code you write.</p>
+<p data-height="265" data-theme-id="1" data-slug-hash="EWZbmQ" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-01" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/EWZbmQ/">book-cover-step-01</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>If you don't explicitly instruct it, p5.js creates a canvas (the drawing area inside the web page that you will be using) using a default size which is probably too small for your purposes. That's why you are calling the <code>createCanvas</code> function which creates a canvas explicitly using the given x and y dimensions. You are also calling the <code>background</code> function inside the <code>draw</code> function to be able to set a color for the canvas as well. This might not be necessary for boilerplate purposes but it helps with seeing the created canvas.</p>
+<h4>Colors & Shapes in p5.js</h4>
+<p>Color setting functions in p5.js, like the <code>background</code> function you are using here, works with either one, two, three or four arguments. A single argument creates a solid color using the given value for the R, G, and B (Red, Green, Blue) components. Calling a color setting function with a single value is same as calling it with the same value as three separate arguments. These two declarations below would create the same result:</p>
+<pre rel="JavaScript"><code class="language-javascript">background(150);
+background(150, 150, 150);</code></pre>
+<p>A fourth argument, when provided, sets the alpha (transparency) for the color. A second argument, when is used as the last argument also controls the alpha of the color and hence the alpha of the shapes that you draw after it. Talking of shapes, let's create a shape. Here is a rectangle, drawn by using the <code>rect</code> function.</p>
+<p data-height="265" data-theme-id="1" data-slug-hash="PpWOjY" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-02" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/PpWOjY/">book-cover-step-02</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>The first two arguments to the <code>rect</code> function set the position of the rectangle and the last two arguments are for setting the size. Notice how when used with the arguments <code>0</code> and <code>0</code>, the rectangle is drawn to the top-left of the screen. <code>0, 0</code> is the origin point for the canvas and it resides at the top-left corner. Rectangle shapes are drawn from their top-left corner by default in p5.js. If you wanted to change this behavior, you can declare a function called <code>rectMode</code> with the p5.js variable <code>CENTER</code> to change the rectangle drawing mode. It makes sense to place this declaration inside the <code>setup</code> function since you will only have to do it once for the lifetime of a program.</p>
+<p data-height="265" data-theme-id="1" data-slug-hash="vxgWZP" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-03" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/vxgWZP/">book-cover-step-03</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>If you wanted to draw this rectangle right in the middle of the screen, you have a couple of options. You could provide it with the value <code>700/2</code> so that it would be using half of the width and half of the height. But hard-coding values like this is not a good programming practice. You could try sharing variables among the <code>rect</code> function and the <code>setup</code> and <code>draw</code> functions. But luckily, since placing things relative to the width and height of the canvas is a common operation, p5.js provides you with a shortcut. You can use the p5.js variables <code>width</code> and <code>height</code> to be able to get the current width and height of the canvas. Divide these variables by two to use them for the placement of the rectangle.</p>
+<p data-height="265" data-theme-id="1" data-slug-hash="VpPrzg" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-04" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/VpPrzg/">book-cover-step-04</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>So far, you know how to set the color for the background but haven't seen how to set the color for the shapes yet. There are two functions that allow you to do so. One of them is the <code>fill</code> function that sets the fill color for the shapes that comes after this function declaration and then there is the <code>stroke</code> function that sets the color for the stroke.</p>
+<p>How color functions work might feel bit unintuitive since they affect the shapes that come after the declaration and not before. To understand how they operate, you can think of calling these functions as setting the active color for the consecutive drawing operations.</p>
+<p>Another related function is <code>strokeWidth</code>, which sets the width of the stroke of the shapes. You will be using all these three functions to create a transparent rectangle with white borders.</p>
+<p data-height="265" data-theme-id="1" data-slug-hash="GWrOMV" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-05" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/GWrOMV/">book-cover-step-05</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>You will also create a text in the middle of the screen. For this purpose, you will be using the <code>text</code> function. <code>text</code> function takes 3 inputs, the text to be drawn to the screen and the x and the y position for the text placement. You can also use the <code>textFont</code> function to set the desired font for the text.</p>
+<p data-height="265" data-theme-id="1" data-slug-hash="KWayya" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-06" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/KWayya/">book-cover-step-06</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>There are a couple of things to fix here. First of all, notice how the text is not center aligned. As you can guess by now, there is a function to set how text is aligned, called the <code>textAlign</code> function. You will be using the <code>textAlign</code> function in the <code>setup</code> function since you won't be changing this property again. You will provide it with two arguments: <code>CENTER, CENTER</code>. This will make the text drawings to be horizontally and vertically aligned.</p>
+<p>The second thing to notice is that the text shape is being affected by the fill and stroke values of the rectangle above but you probably don't want to use these values when drawing the text. Let's set new values before drawing the text to get rid of the previous values. </p>
+<p data-height="265" data-theme-id="1" data-slug-hash="bqgYaE" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-07" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/bqgYaE/">book-cover-step-07</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>To be able to adjust the stroke, you could have either make the stroke color to be transparent or set the strokeWeight to be 0. There is also a <code>noStroke</code> function that is used here which gets rid of the stroke altogether. It doesn't really matter which one you choose in my opinion, they all have the same effect in this use case.</p>
+<p>You will now adjust the shape of the rectangle to encompass this text a bit better. Also, you will make the background black for legibility purposes.</p>
+<p data-height="265" data-theme-id="1" data-slug-hash="ZeLavX" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-08" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/ZeLavX/">book-cover-step-08</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>Currently, the text and the rectangle is too small. You already know how to scale up the rectangle. To be able to change the size of the text you could be using a function called <code>textSize</code>. But you will instead use a p5.js transformation function, <code>scale</code>, to handle the scaling since it will allow you to control the scale for the rectangle and the text together in a more straightforward manner. Unfortunately, transformations are not very intuitive when working with p5.js so they require a further explanation.</p>
+<h4>p5.js transformation functions</h4>
+<p>Transformations in p5.js happen relative to the origin point. There is a <code>scale</code> function that you can use which would scale the shapes that come after itself by the given amount, but things will get scaled from the origin point (the top-left corner of the screen). This is rarely desirable. When working with shapes, you would generally want to scale them relative to their center point.</p>
+<p>Notice how calling the <code>scale</code> function makes everything bigger but also displaces them since scaling is happening relative to the top-left corner. </p>
+<p data-height="265" data-theme-id="1" data-slug-hash="YZNEeM" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-09" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/YZNEeM/">book-cover-step-09</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>If only the shape was at the origin point then this scaling operation would have worked for our purposes. Luckily there is a way to achieve that. For this, you should be using the <code>scale</code> function alongside with the <code>translate</code> function. Here is how it works:</p>
+<p data-height="265" data-theme-id="1" data-slug-hash="OpWOZV" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-10" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/OpWOZV/">book-cover-step-10</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>You have set the x and y position for both the rectangle and the text to be 0. This moves the shapes to the origin point. Then you call the <code>translate</code> transformation function to move the shapes to their initial position at <code>width/2</code> and <code>height/2</code>. This works because <code>translate</code> function actually doesn't move the shapes, it moves the entire coordinate system. Now that the origin of the coordinate system is in the middle of the screen, you can call the <code>scale</code> function, which would do the scaling from this desired point. </p>
+<p>Now if this sounds a bit convoluted to you, let me assure that you are not alone. Moving the entire coordinate system to transform a shape is not only an overkill for what you are trying to achieve but can also be impractical since it means that anything else that comes after these shapes will need to use this newly transformed coordinate system which adds a lot of complexity to the process. Let's see it in an example by drawing a new shape.</p>
+<p data-height="265" data-theme-id="1" data-slug-hash="ryyMdo" data-default-tab="css,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-10-B" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/ryyMdo/">book-cover-step-10-B</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>As you can see, you are now drawing a circle using the ellipse function at the x and y coordinates of 120 and 0. But the problem is that even though the provided y value is at 0, you can clearly see that the circle is not at top of the screen but in the middle, which happens to be the new 0 value for the y-axis. This would be highly undesirable for most circumstances but luckily there is a way in p5.js to deal with it. Enter the <code>push</code> and <code>pop</code> functions!</p>
+<h4>push & pop</h4>
+<p>The p5.js <code>push</code> function allows you to create a new state and <code>pop</code> function restores the state to the previous conditions. This allows you to have completely different settings applied to individual objects without worrying those settings to affect the shapes that come after as long as you do everything in between a <code>push</code> and a <code>pop</code> call. Here is how it works:</p>
+<p data-height="265" data-theme-id="1" data-slug-hash="evgery" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-11" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/evgery/">book-cover-step-11</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>Perfect! All that transformation changes you are doing right now remains localized in between the <code>push</code> and <code>pop</code> function calls. It is important to note that you should always call <code>push</code> and <code>pop</code> functions together. Using one but not the other doesn't make any sense. Now that you fixed the problems regarding transformations, you can get rid of the circle shape. One final thing you will be adding before finalizing this text on the screen is to add a bit of an animation to it. Let's scale it up a little bit for the first 200 frames of the animation to add a bit more dynamism to the visual. For this purpose, you can use the <code>frameCount</code> p5.js variable. <code>frameCount</code> p5.js variable keeps track of the number of times the <code>draw</code> function is called during the lifetime of a p5.js program.</p>
+<p data-height="265" data-theme-id="1" data-slug-hash="GWrOBR" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-12" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/GWrOBR/">book-cover-step-12</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>The following code snippet is added to the program. If the <code>frameCount</code> is less than 200 it adds <code>1/400</code> of the current <code>frameCount</code> value to the current scale. The reason why you are using the number 400 is that when the frameCount is 200 you would like to have 0.5 added to the total scale. But this is not the most elegant or scalable way of tackling this problem.</p>
+<pre rel="JavaScript"><code class="language-javascript">if (frameCount &lt; 200) {
+  scale(1.5 + frameCount/400);
+} else {
+  scale(2);
+}</code></pre>
+<p>One p5.js function that you can use to derive this incremental scaling value is the <code>map</code> function. <code>map</code> function maps the given value that is expected to be in between the given minimum and maximum range to a number in the desired minimum and maximum range. The following declaration:</p>
+<pre rel="JavaScript"><code class="language-javascript">map(frameCount, 0, 200, 0, 0.5);</code></pre>
+<p>will map the <code>frameCount</code> variable that is in between 0 and 200 to a value in between 0 and 0.5. Let's make use of it inside the code:</p>
+<p data-height="265" data-theme-id="1" data-slug-hash="JWEOee" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-13" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/JWEOee/">book-cover-step-13</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>This is so much better. And the code is very scalable as well. You could just be changing the <code>scaleFactor</code> and <code>maxLimit</code> variables to adjust how much and how fast the text grows. In the next part of this walkthrough, you will be building the background effect of the final visual, which is arguably the more exciting part of this visual. But the parts you have seen so far should be enough to get you familiarized with the basics of p5.js.</p>
+<h3>Part Two: Creating the Ring Shapes</h3>
+<p>In this second part of the tutorial, you will learn about creating the animated, ring-like shapes in the background. But first, let's move the text drawing code to its own function so that it doesn't occupy so much space inside the <code>draw</code> function.</p>
+<p data-height="265" data-theme-id="1" data-slug-hash="Nppraq" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-14" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/Nppraq/">book-cover-step-14</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>This update didn't introduce any functionality change but is only a structural update to the code to make it more legible. You won't need the <code>drawTitleText</code> function for now, so you can comment it out to be able to focus on the background shapes. </p>
+<p>You will use a JavaScript object to represent the numbers for the final visual on the screen. Using an object to create as shape makes it easier to think about the shape as an entity of its own with a certain set of properties and behaviors. It also helps with encapsulating the functionality that is relevant to the shape, under the shape itself, which is good for code organization.</p>
+<p>Here, you are creating a JavaScript constructor function called <code>Num</code> to represent the numbers that are used in the ring. It takes a couple of arguments; a message for the shape to display, the x, y position, the rotation and the color values for the shape. You haven't seen the <code>rotate</code> function before but it is pretty similar to <code>scale</code> or <code>translate</code> functions. As the name implies, it transforms the shape by rotating it.</p>
+<pre rel="JavaScript"><code class="language-javascript">function Num(msg, x, y, rot, clr) {
+    this.x = x;
+    this.y = y;
+    this.rot = rot;
+    this.msg = msg;
+    this.color = clr;
+
+    this.render = function() {
+        push();
+        fill(this.color);
+        translate(this.x, this.y);
+        rotate(this.rot);
+        text(this.msg, 0, 0);
+        pop();
+    }
+}</code></pre>
+<p>The constructor function has a <code>render</code> method that handles the drawing of the shape to the screen. You can now use this constructor function to initialize an instance of this shape object and draw it on the screen.</p>
+<p data-height="265" data-theme-id="1" data-slug-hash="aJJZqq" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-15" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/aJJZqq/">book-cover-step-15</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>A couple of things that are worth mentioning.</p>
+<p>First of all, notice how the <code>Num</code> function is pretty generic. It could be used to render any text to the screen in a flexible manner. It is also easy to use since you can simply control the rotation by defining the desired rotation value instead of using <code>push</code> and <code>pop</code> functions externally.</p>
+<p>Secondly, see how certain words are being avoided when declaring functions. You could have called the constructor function <code>Number</code> instead of <code>Num</code> but <code>Number</code> is an already existing function in JavaScript so you should try to avoid it. Things wouldn't necessarily explode if you were to use <code>Number</code> but it is generally a good idea to not cause name conflicts. Also for the arguments, you are not using the <code>rotate</code> or <code>color</code> as parameter names as these are the names for built-in p5.js functions. If you are to use these names for arguments then you would not be able to use the functions that are using the same name in the context of this function. Learning how to avoid these names comes with practice.</p>
+<p>Finally, notice how you are providing a rotation value of 90 to the number object, but the number doesn't seem to have rotated 90 degrees. That's because p5.js uses <em>radians</em> by default when performing rotations instead of <em>degrees</em>. You can set it to use degrees as the default rotation unit by calling the p5.js <code>angleMode</code> function with the <code>DEGREES</code> variable inside the <code>setup</code> function.</p>
+<pre rel="JavaScript"><code class="language-javascript">angleMode(DEGREES);</code></pre>
+<p>It is great that there is now a single number on the screen but the aim is to have several numbers in a ring formation. Let's figure out how to do this for a single number and then you can scale the operation to do placement for an arbitrary amount of numbers.</p>
+<p data-height="265" data-theme-id="1" data-slug-hash="QppErE" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-16" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/QppErE/">book-cover-step-16</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>The code is growing in size! This is the code that is added for creating the ring layout. </p>
+<pre rel="JavaScript"><code class="language-javascript">var radius = 100;
+var amount = 15;
+
+push();
+translate(width / 2, height / 2);
+
+for (var i = 0; i &lt; amount; i++) {
+    rotate(i);
+    var num = new Num(1, 0 + radius, 0, 90, 255);
+    num.render();
+}
+
+pop();</code></pre>
+<p>Here we have a for-loop that creates a given amount of <code>Num</code> objects that are away from the current origin, by the given <code>radius</code> amount. This is currently only creating 15 objects. This is to illustrate a point. See how the spacing around the shapes is not even. This happens because transformation calls in p5.js (like <code>translate</code>, <code>rotate</code>, <code>scale</code>) have a cumulative effect. For example, these two calls that are listed below would result in a total translation of 20 pixels in the x-axis. </p>
+<pre rel="JavaScript"><code class="language-javascript">translate(10, 0);
+translate(10, 0);</code></pre>
+<p>To remedy this you can use the <code>push</code> and <code>pop</code> so that the transformation effects remain localized and don't accumulate. That should take care of the uneven spacing of shapes. You should also make it so that the shapes are evenly distributed around the imaginary circle. To do this you can just divide 360 (the total angle of a circle) with the number of shapes you have to derive how much you should rotate each shape to achieve an even distribution.</p>
+<p data-height="265" data-theme-id="1" data-slug-hash="RppRJO" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-17" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/RppRJO/">book-cover-step-17</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>Perfect, in the next step, you will be creating a function out of this ring drawing operation. You will make the function to accept <code>radius</code> and <code>amount</code> as arguments. Also inside the function, you will be generating an array of random numbers to be fed into the <code>Num</code> object so that you can pass a random value of 0 or 1 to the object, instead of always using number 1.</p>
+<p>For this purpose, you will use the p5.js <code>random</code> function. Here is a snippet that generates a random floating point number in between 0 and 2 (excluding 2) that gets converted to an integer using the JavaScript <code>parseInt</code> function and gets pushed into an array.</p>
+<pre rel="JavaScript"><code class="language-javascript">var randomNumbers = [];
+for (var i = 0; i &lt;= amount; i++) {
+    randomNumbers.push(parseInt(random(2), 10));
+}</code></pre>
+<p>Now you can pass an item from this <code>randomNumbers</code> collection to the <code>Num</code> object instead of always using the number 1. Here is the entire code:</p>
+<p data-height="265" data-theme-id="1" data-slug-hash="MppeBo" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-18" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/MppeBo/">book-cover-step-18</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>The problem right now is that the p5.js <code>random</code> function is generating a random value for each <code>draw</code> function call but for our purposes, we would like these random values to remain the same throughout the execution of the program. To be able to do so you should use the p5.js <code>randomSeed</code> function. The <code>randomSeed</code> makes sure you are getting the same "random" values for the given seed value. You will make it so that the seed should be configurable from outside the function.</p>
+<p data-height="265" data-theme-id="1" data-slug-hash="JWWKVm" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-19" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/JWWKVm/">book-cover-step-19</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>The numbers are not flickering anymore. Since you created the function that draws a single ring, it is not hard at all at this point to draw multiple rings with varying amounts of <code>Num</code> objects using a loop. To keep the example simple, we are using a numeric constant to keep the density of the rings similar to each other.</p>
+<p data-height="500" data-theme-id="1" data-slug-hash="gmmwqW" data-default-tab="js,result" data-user="enginarslan" data-embed-version="2" data-pen-title="book-cover-step-19-B" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/gmmwqW/">book-cover-step-19-B</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>You are almost done! In fact, I am going to just show the final code at this point, as it doesn't contain anything you haven't learned about. </p>
+<p>Here are a couple of things that are updated in this version.</p>
+<ul>
+<li>Updated the background for the Coding for Visual Learners Text so that it's semi-transparent.</li>
+<li>Introduced rotation to the rings.</li>
+<li>Introduced randomness to the color of the Num objects as well.</li>
+</ul>
+<p data-height="500" data-theme-id="1" data-slug-hash="WppxBo" data-default-tab="result" data-user="enginarslan" data-embed-version="2" data-pen-title="Coding for Visual Learners - Cover" data-preview="true" class="codepen">See the Pen <a href="http://codepen.io/enginarslan/pen/WppxBo/">Coding for Visual Learners - Cover</a> by Engin Arslan (<a href="http://codepen.io/enginarslan">@enginarslan</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p>In case you didn't want the shape to be animated, you can just call a function called <code>noLoop</code> inside the <code>setup</code> function to only display the first frame of the animation. If you wanted to adjust the shape you can start off by tweaking the <code>amount</code>, <code>spacing</code>, <code>radius</code> and <code>rotSpeed</code> parameters.</p>
+<p>I used the static image for my book cover but the animated shape to create animations for the course. To be fair, I also used Photoshop a bit for the placement of some of the elements but the base shape is created with JavaScript and p5.js which makes me happy as a programmer.</p>
+<hr>
+<p>I hope you enjoyed this short introduction to p5.js! Feel free to reach out to me if you have any questions! You can find my website at <a href="http://enginarslan.com/">enginarslan.com</a> and I am on Twitter at <a href="https://twitter.com/inspiratory">@inspiratory</a>.</p>
+<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow" data-shared="sharing-twitter-252847" class="share-twitter sd-button no-icon" href="https://css-tricks.com/creating-book-cover-using-javascript-p5-js/?share=twitter" target="_blank" title="Click to share on Twitter"><span>Twitter</span></a></li><li class="share-facebook"><a rel="nofollow" data-shared="sharing-facebook-252847" class="share-facebook sd-button no-icon" href="https://css-tricks.com/creating-book-cover-using-javascript-p5-js/?share=facebook" target="_blank" title="Click to share on Facebook"><span>Facebook</span></a></li><li class="share-pocket"><a rel="nofollow" data-shared="" class="share-pocket sd-button no-icon" href="https://css-tricks.com/creating-book-cover-using-javascript-p5-js/?share=pocket" target="_blank" title="Click to share on Pocket"><span>Pocket</span></a></li><li class="share-end"></li></ul></div></div></div>
+      
+    </div>
+
+  </article>
+
+  <div class="end-of-article-ads">
+      <div class="bsap-doubles side-by-side">
+      <div id="bsap_1250418" class="bsarocks bsap_3469a2a501a9e18091036aa0c89f9dcb"></div>
+    </div>
+  </div>
+
+<div class="comments-col">
+      <div class="module-comments">
+      <section id="comments">
+
+
+
+
+<div class="comments-closed">
+  This comment thread is closed. If you have important information to share, please <a href="/contact/">contact us</a>.
+</div>
+
+
+</section>    </div>
+  </div>
+</div>
+
+  <aside class="entry-unrelated sidebar sidebar-right">
+
+  
+  
+  <div class="module module-padded module-jobs">
+
+  <h4 class="h4">Front-End Jobs</h4>
+
+  
+  <ul class="job-list">
+
+        <li>
+            <a href="http://codepen.io/url/job/rGjRqZ">
+        <strong>
+          AltspaceVR        </strong>
+        is hiring a
+        Virtual Reality Front End UI Engineer      </a>
+    </li>
+        <li>
+            <a href="http://codepen.io/url/job/zEyqdz">
+        <strong>
+          Niice        </strong>
+        is hiring a
+        Javascript Developer      </a>
+    </li>
+        <li>
+            <a href="http://codepen.io/url/job/nmEdPn">
+        <strong>
+          Mondo Robot        </strong>
+        is hiring a
+        Principal Engineer      </a>
+    </li>
+    
+  </ul>
+
+  <div class="button-wrap">
+
+    <a href="/jobs/" class="button full-width-button">See More Jobs</a>
+    <a href="https://codepen.io/job/new/" class="button full-width-button">Post a Job</a>
+  </div>
+
+</div>
+      <div class="module module-squarespace">
+      <div id="bsap_1306801" class="bsarocks bsap_3469a2a501a9e18091036aa0c89f9dcb"></div>
+    </div>
+  
+      <div class="module module-ad wufoo-ad-6">
+
+  <a href="https://ad.doubleclick.net/ddm/clk/303181152;128762502;s" id="wufoo-ad-6">
+
+    <svg viewBox="0 0 612 412" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <g class="wufoo-logo">
+        <path id="w" d="M106,177.61L61.82,78.31l29.92-5.82,13.52,37.39c4.19,11.67,8.74,25.19,12.51,35.5l0.31-.06c-0.74-12-1-24.93-1.16-38l-0.81-39.54L145.87,62l14.28,38.84c4.16,11.52,7.62,21.89,11.29,33.34l0.31-.06C171,122.2,170.49,109.51,170,97L168.7,57.51,196.92,52l-5.37,108.93-30.38,5.91L146.3,127.5c-3.31-8.8-6.59-18.25-10.38-30.31l-0.31.06c0.7,12.67,1.21,22.65,1.16,32.27l0,42.09Z"
+          stroke="#231f20" />
+        <path id="u" d="M231.82,81.64l-8.34,59.42c-2.23,15.87,1.95,25.65,13,27.2,11.2,1.57,17.8-5.91,20.14-22.55l8.34-59.42,28.16,4L285,148.11c-4.54,32.36-23,46.42-52.41,42.29-28.78-4-41.66-21.87-36.92-55.63l8-57.09Z" stroke="#231f20" />
+        <path id="f" d="M286.14,65.84l67.77-5.65,1.92,23-39.44,3.29L318,106.05,355.11,103l1.9,22.85-37.09,3.09L323.26,169l-28.33,2.36Z" stroke="#231f20" />
+        <path id="o-1" d="M461,130.16c0,34.1-20.43,55.78-53.11,55.78-32.84,0-50.91-24.67-50.91-54.05,0-30.8,20.27-55.31,52.64-55.31C443.75,76.58,461,101.88,461,130.16Zm-74,1.26c0,19.8,8.64,32.06,22.31,32.06S431,150.12,431,131.1C431,112.88,422.85,99,409.18,99,395.67,99,387,111.93,387,131.42Z"
+          stroke="#231f20" />
+        <path id="o-2" d="M550.18,104.47c0,34.1-20.43,55.78-53.11,55.78-32.84,0-50.91-24.67-50.91-54.05,0-30.8,20.27-55.31,52.64-55.31C532.9,50.89,550.18,76.19,550.18,104.47Zm-74,1.26c0,19.8,8.64,32.06,22.31,32.06s21.68-13.36,21.68-32.37c0-18.23-8.17-32.06-21.84-32.06C484.81,73.36,476.17,86.25,476.17,105.73Z"
+          stroke="#231f20" />
+      </g>
+
+      <rect x="60" y="331" width="490" height="63" fill="#fff" stroke="#231f20" />
+
+      <text transform="translate(59 315)" font-size="31" fill="#231f20" font-weight="700">Build custom web forms easily.</text>
+      <text transform="translate(77 371)" font-size="31" fill="#969696">Let's get started!</text>
+
+      <g id="dino">
+        <path fill="#E41E26" d="M533.6,232.7c-0.3-0.1-0.6-0.2-0.9-0.3C533,232.5,533.3,232.6,533.6,232.7z M535.1,233.1
+  		c-0.3,0-0.6-0.1-0.9-0.2C534.5,233,534.7,233,535.1,233.1z M536.6,233.2c-0.3,0-0.7,0-1-0.1C535.9,233.2,536.3,233.2,536.6,233.2z
+  		 M531.2,231.7c0.3,0.1,0.6,0.3,0.8,0.4C531.8,232,531.5,231.8,531.2,231.7z M538.6,233.2c-0.5,0.1-1,0.1-1.5,0.1
+  		C537.6,233.3,538.1,233.3,538.6,233.2z M528.4,229.9c0.3,0.2,0.6,0.4,0.8,0.6C528.9,230.3,528.7,230.1,528.4,229.9z M524.2,226.1
+  		c0.3,0.3,0.6,0.6,0.9,0.9C524.8,226.7,524.5,226.4,524.2,226.1z M527,228.8c0.3,0.2,0.6,0.5,0.8,0.7
+  		C527.5,229.2,527.3,229,527,228.8z M525.6,227.5c0.3,0.3,0.6,0.5,0.8,0.8C526.1,228,525.9,227.8,525.6,227.5z M518.7,219.4
+  		c0.3,0.5,0.7,0.9,1,1.4C519.4,220.3,519.1,219.9,518.7,219.4z M517.4,217.4c0.4,0.5,0.7,1.1,1.1,1.6
+  		C518.1,218.5,517.8,218,517.4,217.4z M520.1,221.2c0.3,0.4,0.6,0.8,0.9,1.2L520.1,221.2z M521.4,223c0.3,0.4,0.6,0.8,0.9,1.1
+  		C522,223.7,521.7,223.3,521.4,223z M522.8,224.6c0.3,0.3,0.6,0.7,0.9,1C523.4,225.2,523.1,224.9,522.8,224.6z M529.8,230.9
+  		c0.3,0.2,0.6,0.3,0.8,0.5C530.4,231.2,530.1,231,529.8,230.9z" />
+        <path fill="#8EC23F" d="M536.6,233.2c-0.3,0-0.7,0-1-0.1C535.9,233.2,536.3,233.2,536.6,233.2z M535.1,233.1
+  		c-0.3,0-0.6-0.1-0.9-0.2C534.5,233,534.7,233,535.1,233.1z M533.6,232.7c-0.3-0.1-0.6-0.2-0.9-0.3
+  		C533,232.5,533.3,232.6,533.6,232.7z M531.2,231.7c0.3,0.1,0.6,0.3,0.8,0.4C531.8,232,531.5,231.8,531.2,231.7z M538.6,233.2
+  		c-0.5,0.1-1,0.1-1.5,0.1C537.6,233.3,538.1,233.3,538.6,233.2z M525.6,227.5c0.3,0.3,0.6,0.5,0.8,0.8
+  		C526.1,228,525.9,227.8,525.6,227.5z M524.2,226.1c0.3,0.3,0.6,0.6,0.9,0.9C524.8,226.7,524.5,226.4,524.2,226.1z M528.4,229.9
+  		c0.3,0.2,0.6,0.4,0.8,0.6C528.9,230.3,528.7,230.1,528.4,229.9z M522.8,224.6c0.3,0.3,0.6,0.7,0.9,1
+  		C523.4,225.2,523.1,224.9,522.8,224.6z M521.4,223c0.3,0.4,0.6,0.8,0.9,1.1C522,223.7,521.7,223.3,521.4,223z M517.4,217.4
+  		c0.4,0.5,0.7,1.1,1.1,1.6C518.1,218.5,517.8,218,517.4,217.4z M518.7,219.4c0.3,0.5,0.7,0.9,1,1.4
+  		C519.4,220.3,519.1,219.9,518.7,219.4z M520.1,221.2c0.3,0.4,0.6,0.8,0.9,1.2L520.1,221.2z M527,228.8c0.3,0.2,0.6,0.5,0.8,0.7
+  		C527.5,229.2,527.3,229,527,228.8z M529.8,230.9c0.3,0.2,0.6,0.3,0.8,0.5C530.4,231.2,530.1,231,529.8,230.9z" />
+
+        <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="643.465" y1="316.6403" x2="597.6864" y2="82.4081" gradientTransform="matrix(0.9533 -0.3021 0.3021 0.9533 -50.5851 215.0953)">
+          <stop offset="6.000000e-03" style="stop-color:#1E7086" />
+          <stop offset="0.176" style="stop-color:#33839D" />
+          <stop offset="0.348" style="stop-color:#4192B1" />
+          <stop offset="0.473" style="stop-color:#4699BA" />
+          <stop offset="0.613" style="stop-color:#4293B2" />
+          <stop offset="0.792" style="stop-color:#3685A0" />
+          <stop offset="0.991" style="stop-color:#207187" />
+          <stop offset="1" style="stop-color:#1E7086" />
+        </linearGradient>
+        <path fill="url(#SVGID_2_)" d="M639.5,190.8c-3.4-36.5,17.6-118.2-108.5-109.7l0,0c0,0-23.1,1-21.9,23.3
+  		c1.2,22.4,6.2,36.9,9.6,50.4c0,0-21.8,20.1-16.1,33.8c5.7,13.7,20.7,46.7,35.9,44.6c15.3-2.1,48.4-15.3,61.4-23.1
+  		c0,0,7,72.4,9.4,99.9c0.7,7.9,2.1,22.4,5.2,41.2c18.6-9.2,37.3-18.3,56.1-27.2C654.3,275.8,641.9,216.3,639.5,190.8z" />
+
+        <ellipse transform="matrix(0.9533 -0.3021 0.3021 0.9533 -15.9028 180.912)" fill="#FFFFFF" cx="576.9" cy="141.9" rx="13" ry="22.9" />
+
+        <ellipse transform="matrix(0.9533 -0.3021 0.3021 0.9533 -16.5344 179.6383)" fill="#231815" cx="572.5" cy="143.3" rx="8.3" ry="14.7" />
+        <path fill="#85BFD2" d="M621.6,237.7c-1.1-8.9-9.4-42.7-11.6-46.2c-2.1-3.4-4.9-18.6-47.2,7.1c-31.2,18.9-42.9,18.3-46.8,16.7
+  		c6.5,10.3,14.5,18.9,22.5,17.8c15.2-2.1,48.4-15.3,61.4-23.1c0,0,7,72.4,9.4,99.9c0.7,7.9,2.1,22.4,5.2,41.2
+  		c8.1-4,16.2-8,24.3-11.9C627.4,287.8,622.2,242.4,621.6,237.7z" />
+        <g opacity="0.6">
+
+          <linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="506.196" y1="467.0849" x2="553.5162" y2="428.8841" gradientTransform="matrix(0.9533 -0.3021 -0.3021 -0.9533 134.293 798.5026)">
+            <stop offset="0" style="stop-color:#7AB3C4" />
+            <stop offset="0.87" style="stop-color:#7AB3C4" />
+            <stop offset="1" style="stop-color:#7AB3C4" />
+          </linearGradient>
+          <path fill="url(#SVGID_3_)" d="M517.3,217.2c-0.4-0.6-0.8-1.2-1.2-1.8c0,0,0,0,0,0C516.5,216,516.9,216.6,517.3,217.2z" />
+
+          <linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="553.1611" y1="525.1908" x2="600.4362" y2="487.0253" gradientTransform="matrix(0.9533 -0.3021 -0.3021 -0.9533 134.293 798.5026)">
+            <stop offset="0" style="stop-color:#7AB3C4" />
+            <stop offset="0.87" style="stop-color:#7AB3C4" />
+            <stop offset="1" style="stop-color:#7AB3C4" />
+          </linearGradient>
+          <path fill="url(#SVGID_4_)" d="M538.2,100c12.1-9.4,47.7-11.3,71-6c-16-9.9-40.5-15.4-78.2-12.9c0,0-23.1,1-21.9,23.3
+  			s6.2,36.9,9.6,50.4c0,0-21.8,20.1-16.1,33.8c2.7,6.5,7.5,17.4,13.5,26.7c3.5,1.4,13,2,36.6-10.9c-0.4-1.7-1.2-4-2.6-6.8
+  			c-6-11.7-16.1-20.8-6.2-35.3C553.8,147.8,524.3,110.8,538.2,100z" />
+        </g>
+        <path fill="#1E7086" d="M533.8,137.1c2.6,9.5,1.4,13-1,13.7c-2.4,0.7-5-1.8-7.6-11.3c-2.6-9.5-2.8-17.7-0.4-18.4
+  		C527.1,120.5,531.2,127.6,533.8,137.1z" />
+
+        <linearGradient id="SVGID_5_" gradientUnits="userSpaceOnUse" x1="681.5992" y1="201.3821" x2="624.5172" y2="323.9237" gradientTransform="matrix(0.9533 -0.3021 0.3021 0.9533 -50.5851 215.0953)">
+          <stop offset="0" style="stop-color:#7AB3C4" />
+          <stop offset="0.86" style="stop-color:#7AB3C4" />
+          <stop offset="1" style="stop-color:#7AB3C4" />
+        </linearGradient>
+        <path opacity="0.4" fill="url(#SVGID_5_)" d="M639.8,193.5c-3.4,3.6-9,11.7-7,23.6
+  		c0,0,7.2,57.4,25.2,112.9c4.2-2,8.3-4,12.5-6C654.9,277.5,642.7,220.3,639.8,193.5z" />
+
+        <linearGradient id="SVGID_6_" gradientUnits="userSpaceOnUse" x1="611.5856" y1="236.8385" x2="647.111" y2="236.8385" gradientTransform="matrix(0.9533 -0.3021 0.3021 0.9533 -50.5851 215.0953)">
+          <stop offset="0" style="stop-color:#4699BA" />
+          <stop offset="0.951" style="stop-color:#4699BA" />
+          <stop offset="1" style="stop-color:#4699BA" />
+        </linearGradient>
+        <path fill="url(#SVGID_6_)" d="M623.9,218.4c-3.2-25.8-11.1-40.6-11.1-40.6c3.7-7.1-2.9-17.7-2.9-17.7
+  		c5.7,13.7-27.3,27.3-27.3,27.3l-0.2,0.9c23.7-10.1,25.8,0.5,27.6,3.3c2.1,3.4,10.5,37.3,11.6,46.2c0.6,4.7,5.8,50.1,17.2,101.6
+  		c2.3-1.1,4.5-2.2,6.8-3.3C637.6,304.6,626.9,242.5,623.9,218.4z" />
+
+        <linearGradient id="SVGID_7_" gradientUnits="userSpaceOnUse" x1="540.0744" y1="428.1269" x2="622.0959" y2="428.1269" gradientTransform="matrix(0.9533 -0.3021 -0.3021 -0.9533 134.293 798.5026)">
+          <stop offset="0" style="stop-color:#FFFFFF" />
+          <stop offset="0.87" style="stop-color:#FFFFFF" />
+          <stop offset="1" style="stop-color:#FFFFFF" />
+        </linearGradient>
+        <path opacity="0.35" fill="url(#SVGID_7_)" d="M538.6,233.2c15.3-2.1,48.4-15.3,61.4-23.1
+  		c0.3-11.9-18.7,0-33,3.6c-9.6,2.4-14-3.9-15.8-8.4c-22.5,12-31.6,11.4-35.1,10C522.6,225.7,530.5,234.3,538.6,233.2z" />
+
+        <linearGradient id="SVGID_8_" gradientUnits="userSpaceOnUse" x1="592.8458" y1="312.0763" x2="606.6599" y2="312.0763" gradientTransform="matrix(0.9533 -0.3021 0.3021 0.9533 -50.5851 215.0953)">
+          <stop offset="0" style="stop-color:#FFFFFF" />
+          <stop offset="1" style="stop-color:#FFFFFF" />
+        </linearGradient>
+        <path opacity="0.35" fill="url(#SVGID_8_)" d="M617.7,315.7l-8.1-1.9c0.8,8.3,2.2,21.3,4.8,37.4
+  		c3.1-1.5,6.3-3.1,9.4-4.6C619.5,327.7,617.7,315.7,617.7,315.7z" />
+      </g>
+    </svg>
+
+    <div style="padding: 35px;">
+      <span class="button full-width-button">
+        Sign Up Now!
+      </span>
+    </div>
+
+  </a>
+
+  <img src="https://ad.doubleclick.net/ddm/ad/N7439.1063086.CSS-TRICKS.COM/B7043538.128762502;sz=1x1;ord=1496177227;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=?" alt="">
+
+</div>  
+</aside>
+
+
+  </div>
+
+  <footer class="site-footer footer-newsletter">
+
+    <div class="footer-section-1"></div>
+
+    <div class="footer-section-2">
+
+      <img src="https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-16/images/get-the-newsletter.png" alt="Get the Newsletter!">
+
+      <form action="//chriscoyier.us2.list-manage.com/subscribe/post?u=155f5a9ccc4e24c318130cace&amp;id=197f127a68" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+
+        <p class="mc-field-group">
+          <label for="mce-EMAIL" class="screen-reader">Email Address</label>
+          <input type="email" name="EMAIL" class="required email mailchimp-email-input" id="mce-EMAIL">
+          <svg class="icon-email" width="20px" height="15px">
+            <use xlink:href="#icon-email"></use>
+          </svg>
+          <input type="submit" value="Subscribe" name="Subscribe" id="mc-embedded-subscribe" class="button subscribe-button">
+        </p>
+        <div id="mce-responses" class="clear">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
+        </div>
+        <div style="position: absolute; left: -9999px; top: -9999px"><input type="text" name="b_155f5a9ccc4e24c318130cace_197f127a68" value=""></div>
+
+      </form>
+    </div>
+
+    <div class="footer-section-3">
+      Lots of great stuff that isn't published anywhere else!
+    </div>
+
+  </footer>
+
+    <footer class="site-footer footer-mediatemple">
+
+    <div class="footer-section-1"></div>
+    <div class="footer-section-2">
+      <a href="https://mediatemple.net/landing/csstricks/?utm_source=CSS-Tricks&utm_medium=display&utm_campaign=heaeder-box"><img class="mt-img" src="https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-16/images/mediatemple-logo-white-superwide.svg" alt="Media Temple"></a>
+    </div>
+    <div class="footer-section-3">
+      <a href="https://mediatemple.net/landing/csstricks/?utm_source=CSS-Tricks&utm_medium=display&utm_campaign=heaeder-box">CSS-Tricks web host since day one. Save 20% with code <strong>CSSTRICKS</strong>.</a>
+    </div>
+
+  </footer>
+  
+  <footer class="site-footer footer-colophon">
+
+    <div class="footer-section-1"></div>
+
+    <div class="footer-section-2">
+      <p>CSS-Tricks* is created, written by, and maintained by <a href="http://chriscoyier.net">Chris Coyier</a> and <a href="/about/">a team</a> of swell people. It is built on <a href="http://wordpress.org/">WordPress</a>, hosted by <a href="https://mediatemple.net/landing/csstricks/?utm_source=CSS-Tricks&utm_medium=display&utm_campaign=footer-link">Media Temple</a>, and the assets are served by <a href="http://tracking.maxcdn.com/c/13088/3982/378">MaxCDN</a>. It is made possible through <a href="/advertising/">sponsorships</a> from products and services we like.</p>
+
+      <p class="mega-big-time-warning"><small>*May or may not contain any actual "CSS" or "Tricks".</small></p>
+
+      <a class="twitter-follow-button" href="https://twitter.com/Real_CSS_Tricks">
+        Follow @Real_CSS_Tricks
+      </a>
+
+      <nav>
+        <a href="/contact/">Contact</a>
+        <a href="/about/">About</a>
+        <a href="/archives/">Archives</a>
+        <a href="/advertising/">Advertise</a>
+        <a href="/jobs/">Jobs</a>
+        <a href="/license/">License</a>
+        <a href="/subscription-options/">Subscribe</a>
+        <a href="/feed/">RSS</a>
+        <a href="/guest-posting/">Guest Posting</a>
+      </nav>
+
+    </div>
+
+    <div class="footer-section-3">
+      <svg class="icon-footer-star" width="280px" height="280px">
+        <use xlink:href="#icon-logo-star"></use>
+      </svg>
+    </div>
+
+  </footer>
+
+  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none"><symbol id="icon-anchor" viewbox="0 0 54.89 64"><title>icon-anchor</title><path fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2" d="M26.96 13v50"/><path fill="none" stroke="#000" stroke-linejoin="bevel" stroke-width="2" d="M13.96 50l-10-3-3 10M39.96 50l10-3 4 10"/><path d="M49.71 47A24 24 0 0 1 27 63 24 24 0 0 1 4.21 47M17.96 17h18" fill="none" stroke="#000" stroke-linejoin="bevel" stroke-width="2"/><circle cx="26.96" cy="7" r="6" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/></symbol><symbol id="icon-close" viewbox="0 0 95.08 95.09"><title>icon-close</title><path d="M58.31 47.47l34.58-34.58a7.63 7.63 0 0 0 0-10.69 7.63 7.63 0 0 0-10.69 0L47.62 36.78 13 2.19a7.63 7.63 0 0 0-10.69 0 7.63 7.63 0 0 0 0 10.69l34.6 34.6L2.33 82.07a7.29 7.29 0 0 0 0 10.69 7.63 7.63 0 0 0 10.69 0l34.6-34.6 34.6 34.6a7.27 7.27 0 0 0 10.68 0 7.63 7.63 0 0 0 0-10.69z" data-name="Layer 1"/></symbol><symbol id="icon-email" viewbox="0 0 100 68.89"><title>icon-email</title><path d="M36.25 38.44L47.74 49.1a3.33 3.33 0 0 0 4.51 0l11.5-10.66 24.69 23.78H11.56zM93.33 11v46.6L68.68 33.85zM6.67 11l24.65 22.85L6.67 57.64zm5.1-4.37h76.46L50 42.12zM4.44 0A4.51 4.51 0 0 0 0 4.44v60a4.51 4.51 0 0 0 4.44 4.44h91.12a4.51 4.51 0 0 0 4.44-4.44v-60A4.51 4.51 0 0 0 95.56 0z" data-name="Layer 1"/></symbol><symbol id="icon-link" viewbox="0 0 100 58.84"><title>icon-link</title><path d="M78.47 48H49.21a10.66 10.66 0 0 1-9-4.91h10.58A21.57 21.57 0 0 0 71.7 26.64h6.76a10.67 10.67 0 0 1 0 21.33zm-67.6-26.47a10.67 10.67 0 0 1 10.67-10.66H50.8A10.59 10.59 0 0 1 58.34 14a10.94 10.94 0 0 1 1.43 1.79H49.21a21.57 21.57 0 0 0-20.92 16.4h-6.76a10.67 10.67 0 0 1-10.66-10.66zm39.92 10.66H39.86a10.68 10.68 0 0 1 9.35-5.54h10.93a10.67 10.67 0 0 1-9.35 5.54zM100 37.31a21.53 21.53 0 0 0-21.53-21.53h-6.92A21.53 21.53 0 0 0 50.8 0H21.54a21.53 21.53 0 0 0 0 43.06h6.83v-.31A21.41 21.41 0 0 0 34 52.53a21.4 21.4 0 0 0 15.2 6.31h29.26A21.56 21.56 0 0 0 100 37.31z"/></symbol><symbol id="icon-logo-star" viewbox="0 0 362.62 388.52"><title>icon-logo-star</title><path d="M156.58 239l-88.3 64.75c-10.59 7.06-18.84 11.77-29.43 11.77-21.19 0-38.85-18.84-38.85-40 0-17.69 14.13-30.64 27.08-36.52l103.6-44.74-103.6-45.92C13 142.46 0 129.51 0 111.85 0 90.66 18.84 73 40 73c10.6 0 17.66 3.53 28.25 11.77l88.3 64.75-11.74-104.78C141.28 20 157.76 0 181.31 0s40 18.84 36.5 43.56L206 149.52l88.3-64.75C304.93 76.53 313.17 73 323.77 73a39.2 39.2 0 0 1 38.85 38.85c0 18.84-12.95 30.61-27.08 36.5l-103.61 45.91L335.54 239c14.13 5.88 27.08 18.83 27.08 37.67 0 21.19-18.84 38.85-40 38.85-9.42 0-17.66-4.71-28.26-11.77L206 239l11.77 104.78c3.53 24.72-12.95 44.74-36.5 44.74s-40-18.84-36.5-43.56z"/></symbol><symbol id="icon-menu" viewbox="0 0 100 68.42"><title>icon-menu</title><path d="M94.73 10.53H5.27c-7 0-7-10.53 0-10.53h89.46c6.88.14 6.88 10.38 0 10.53zm0 18.42H5.27c-7 0-7 10.53 0 10.53h89.46c6.86-.17 6.86-10.38 0-10.53zm0 28.94H5.27c-7 0-7 10.53 0 10.53h89.46c7.03 0 7.03-10.53 0-10.53z" data-name="Layer 1"/></symbol><symbol id="icon-nav-almanac" viewbox="0 0 64 64"><path fill="none" d="M7 1h46v62H7z"/><path fill="none" vector-effect="non-scaling-stroke" d="M15 63V2M20 15h28M20 21h28"/></symbol><symbol id="icon-nav-forums" viewbox="0 0 64 64"><path d="M10 15h44v2H10zM10 25h44v2H10zM10 35h44v2H10z"/><path d="M17 61.174L32.37 48H64V4H0v44h17v13.174zM2 46V6h60v40H31.63L19 56.826V46H2z"/></symbol><symbol id="icon-nav-gallery" viewbox="0 0 64 64"><path d="M0 54h64V10H0v44zm2-2v-4.544l21.952-19.09 12.156 12.156 6.051-8.068L62 49.459V52H2zm60-40v34.826l-20.16-17.28-5.949 7.932-11.843-11.844L2 44.805V12h60z"/><path d="M51 28c3.309 0 6-2.691 6-6s-2.691-6-6-6-6 2.691-6 6 2.691 6 6 6zm0-10c2.206 0 4 1.794 4 4s-1.794 4-4 4-4-1.794-4-4 1.794-4 4-4z"/></symbol><symbol id="icon-nav-guide" viewbox="0 0 64 56.9"><title>icon-nav-guide</title><path d="M1 55.45l21-8 20 8 21-8v-46l-21 8-20-8-21 8v46zM22 1.45v46M42 9.45v46"/></symbol><symbol id="icon-nav-home" viewbox="0 0 64 64"><path d="M32 3L2 33h9v30h12V47h16v16h12V33h11z"/></symbol><symbol id="icon-nav-jobs" viewbox="0 0 64 64"><path d="M41 37.586L23.414 20l12-12-5.305-5.302-.688.486c-.025.018-2.537 1.769-5.671 1.769-2.244 0-4.277-.896-6.043-2.66L17 1.586-.414 19 12 31.414l10-10L39.586 39l-3 3L57 62.414 64.414 55 44 34.586l-3 3zM2.414 19L17.026 4.388c1.983 1.703 4.241 2.565 6.724 2.565 2.722 0 4.992-1.057 6.103-1.687L32.586 8 12 28.586 2.414 19zM57 59.586L39.414 42 44 37.414 61.586 55 57 59.586z"/></symbol><symbol id="icon-nav-newsletter" viewbox="0 0 64 64"><path d="M64 12H0v39h64V12zm-4.395 2L32 31.81 4.395 14h55.21zM2 49V14.835L32 34.19l30-19.355V49H2z"/></symbol><symbol id="icon-nav-shop" viewbox="0 0 64 64"><path d="M44 18h10v45H10V18h10z"/><path d="M22 24V11c0-5.523 4.477-10 10-10s10 4.477 10 10v13"/></symbol><symbol id="icon-nav-snippets" viewbox="0 0 64 64"><path d="M0 64h64.414L0-.414V64zm2-9h6v-2H2v-6h4v-2H2v-6h6v-2H2v-6h4v-2H2v-6h6v-2H2V4.414L59.586 62H2v-7z"/><path d="M13 27.586V55h27.414L13 27.586zm2 4.828L35.586 53H15V32.414zM64.375 46.375l-2.472-9.886L25-.414 17.586 7l36.903 36.903 9.886 2.472zm-2.75-2.75l-6.114-1.528L26.414 13 31 8.414l29.097 29.097 1.528 6.114zM25 2.414L29.586 7 25 11.586 20.414 7 25 2.414z"/></symbol><symbol id="icon-nav-video" viewbox="0 0 64 64"><path d="M46 30l17-10v32L46 42v10H1V20h45zM6 28h4M14 28h4"/><path d="M7 36h18v10H7zM6 12h26l8 8"/></symbol><symbol id="icon-search" viewbox="0 0 100 100"><title>icon-search</title><path d="M80.65 66.78a33.55 33.55 0 0 1-47.44-47.44 33.55 33.55 0 1 1 47.44 47.44zm6.73-54.16a43.06 43.06 0 0 0-65.32 55.71L2 88.39A6.8 6.8 0 0 0 11.61 98l20.06-20.06a43.06 43.06 0 0 0 55.71-65.32z"/></symbol><symbol id="icon-star" viewbox="0 0 100 95.52"><title>icon-star</title><path d="M64.19 28.77a5.17 5.17 0 0 0 3.9 2.83s29.27-3 31.74 4.61-23 22.39-23 22.39a5.17 5.17 0 0 0-1.49 4.58s11.91 26.9 5.42 31.61S52.4 79.87 52.4 79.87a5.21 5.21 0 0 0-2.41-.6 5.14 5.14 0 0 0-2.41.6S25.68 99.5 19.2 94.79s5.42-31.61 5.42-31.61a5.18 5.18 0 0 0-1.49-4.58S-2.31 43.83.17 36.21s31.74-4.61 31.74-4.61a5.19 5.19 0 0 0 3.9-2.83S42 0 50 0s14.19 28.77 14.19 28.77z" data-name="Layer 1"/></symbol><symbol id="icon-tag" viewbox="0 0 100 99.98"><title>icon-tag</title><path d="M42 42a10.07 10.07 0 1 1 0-14.24A10 10 0 0 1 42 42zm56 6.5l-43.74-44a7.19 7.19 0 0 0-5-2.25L8 0a7.55 7.55 0 0 0-8 7v1l2.5 41a7.11 7.11 0 0 0 2.25 4.75l43.49 44a7.2 7.2 0 0 0 5.24 2.25 6.81 6.81 0 0 0 5.25-2.25L97.72 59A7.47 7.47 0 0 0 98 48.5z"/></symbol></svg>
+  <script>var pollsL10n = {"ajax_url":"https:\/\/css-tricks.com\/wp-admin\/admin-ajax.php","text_wait":"Your last request is still being processed. Please wait a while ...","text_valid":"Please choose a valid poll answer.","text_multiple":"Maximum number of choices allowed: ","show_loading":"0","show_fading":"1"};</script><script>var markdownify = {"ajax_url":"\/wp-admin\/admin-ajax.php","nonce":"549e7afdba"};</script><script>var bblpAJAX = {"ajaxurl":"https:\/\/css-tricks.com\/wp-admin\/admin-ajax.php"};</script><script type='text/javascript' src='https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-16/js/libs/jquery-3.1.1.min.js'></script>
+<script type='text/javascript' src='https://cdn.css-tricks.com/wp-includes/js/wp-embed.min.js?ver=4.7.5'></script>
+<script type='text/javascript' src='https://cdn.css-tricks.com/wp-content/uploads/minqueue-cache/minqueue-b86f83f0-f45ca964.js'></script>
+
+  
+<script src='https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-16/js/min/global-libs-min.js?v=1.5'></script>
+<script src='https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-16/js/min/global-min.js?v=1.5'></script>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-68528-29', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+</body>
+
+</html>
