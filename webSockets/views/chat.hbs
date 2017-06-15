@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+    <body>
+        <h1>CHat App</h1>
+        <input id="message" onkeypress="send_message(event)">
+        <pre id="chat-box"></pre>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            //initialize server side connection
+            var server = io();
+            var room;
+            //look for 'connect' event from server to browser
+            server.on('connect', function (s) {
+                console.log('connected');
+            });
+
+            //url object made from string given in browser
+            var url = new URL(location.href);
+            //from url get search params, if no 'room' go to main room
+            room = url.searchParams.get('room') || 'main-room';
+            server.emit('join-room', room);
+            // sending message
+            server.emit('incoming', {room: room, msg: msg.value});
+
+            //take event called 'chat-msg' and input into var chat
+            server.on('chat-msg', function (msg) {
+                var chat = document.getElementById("chat-box");
+                chat.insertAdjacentHTML('beforeend', '\n' + msg);
+            });
+            function send_message (event) {
+                //get keypresses and once enter(key 13) is hit, send msg to server
+                var char = event.which || event.keyCode;
+                if (char == '13') {
+                    var msg = document.getElementById("message");
+                    //'incoming' is event name
+                    server.emit('incoming', msg.value);
+                    msg.value = '';
+                }
+            }
+        </script>
+    </body>
+</html>

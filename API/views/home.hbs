@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Taglines</title>
+        <script src="/axios/axios.js"></script>
+    </head>
+    <body>
+    <form action="/search_results" method="post">
+        <input id="searchMe" type="text" name="search">
+        <button type="submit">Search</button>
+    </form>
+        <h1 id="movie"></h1>
+        <h2 id="tag"></h2>
+        <img id="movie_img" src="https://image.tmdb.org/t/p/w1400_and_h450_bestv2">
+    <script>
+        var search = document.getElementById('searchMe').value;
+        axios.get('/api')
+                .then(function(response) {
+                    console.log(response)
+                    var movieData = document.getElementById('movie')
+                    var tagData = document.getElementById('tag');
+                    var backgroundImg = document.getElementById('movie_img');
+                    tagData.innerHTML = response.data.tagline;
+                    movieData.innerHTML = response.data.title;
+                    backgroundImg.setAttribute('src', 'https://image.tmdb.org/t/p/w1400_and_h450_bestv2' + response.data.backdrop_path);
+        })
+
+    </script>
+    </body>
+</html>
