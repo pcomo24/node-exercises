@@ -11,9 +11,8 @@
     </form>
         <h1 id="movie"></h1>
         <h2 id="tag"></h2>
-        <img id="movie_img" src="https://image.tmdb.org/t/p/w1400_and_h450_bestv2">
+        <img id="movie_img">
     <script>
-        var search = document.getElementById('searchMe').value;
         axios.get('/api')
                 .then(function(response) {
                     console.log(response)
